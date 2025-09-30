@@ -1560,7 +1560,7 @@
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Phone</h4>
-                            <p><a href="tel:+918328575654" style="color: inherit; text-decoration: none;">+918328575654</a></p>
+                            <p><a href="tel:+918328575654" onclick="openPhoneDialer(); return false;" style="color: inherit; text-decoration: none;">+918328575654</a></p>
                         </div>
                     </div>
 
@@ -1568,7 +1568,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p><a href="mailto:faizmohdkhan244@gmail.com" onclick="openEmailClient(); return false;" style="color: inherit; text-decoration: none;">faizmohdkhan244@gmail.com</a></p>
+                            <p><a href="mailto:faizmohdkhan244@gmail.com" style="color: inherit; text-decoration: none;">faizmohdkhan244@gmail.com</a></p>
                         </div>
                     </div>
 
@@ -1764,6 +1764,12 @@
             statsObserver.observe(statsSection);
         }
 
+        // Phone call functionality
+        function openPhoneDialer() {
+            const phoneNumber = '+918328575654';
+            window.location.href = `tel:${phoneNumber}`;
+        }
+
         // Job Application Function
         function applyJob(jobTitle) {
             const subject = `Application for ${jobTitle}`;
@@ -1775,32 +1781,6 @@
             // Show confirmation
             showNotification(`Application initiated for ${jobTitle}. Please complete the email or contact us directly.`, 'success');
         }
-
-        // Email functionality
-        function openEmailClient() {
-            const email = 'faizmohdkhan244@gmail.com';
-            const subject = 'Inquiry about Visa Services';
-            const body = 'Hello ARSALAN Visa Services,\n\nI am interested in your services. Please provide more information.\n\nThank you.';
-            
-            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
-        }
-
-        // Enhanced contact item click handlers
-        document.addEventListener('DOMContentLoaded', function() {
-            const emailItems = document.querySelectorAll('.contact-item');
-            emailItems.forEach(item => {
-                const emailLink = item.querySelector('a[href^="mailto:"]');
-                if (emailLink) {
-                    item.style.cursor = 'pointer';
-                    item.addEventListener('click', function(e) {
-                        if (e.target.tagName !== 'A') {
-                            openEmailClient();
-                        }
-                    });
-                }
-            });
-        });
 
         // Contact Form Handling
         document.getElementById('contact-form').addEventListener('submit', function(e) {
