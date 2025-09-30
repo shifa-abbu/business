@@ -1779,15 +1779,27 @@
             const phone = formData.get('phone');
             const service = formData.get('service');
             const message = formData.get('message');
-            
-            // Simulate form submission
-            showNotification('Thank you! Your message has been sent. We will contact you soon.', 'success');
-            
-            // Reset form
+
+            const whatsappNumber = '918328575654';
+            const composedMessage = [
+                'Hello ARSALAN Visa Services,',
+                `My name is ${name}.`,
+                `Email: ${email}`,
+                `Phone: ${phone}`,
+                service ? `Service Interested: ${service.replace(/-/g, ' ')}` : null,
+                message ? `Message: ${message}` : null,
+                '',
+                'Sent from the website contact form.'
+            ]
+                .filter(Boolean)
+                .join('\n');
+
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(composedMessage)}`;
+            window.open(whatsappURL, '_blank', 'noopener');
+
+            showNotification('Opening WhatsApp with your details. Please complete and send the message.', 'success');
+
             this.reset();
-            
-            // You can integrate with actual email service here
-            console.log('Form Data:', { name, email, phone, service, message });
         });
 
         // Notification System
